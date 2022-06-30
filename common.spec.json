@@ -1,0 +1,4583 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Backoffice.License API",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://[::]:20059"
+    }
+  ],
+  "paths": {
+    "/api/common/license/{tenantId}/bucket/{bucketId}": {
+      "get": {
+        "tags": [
+          "Bucket"
+        ],
+        "summary": "Gets bucket object",
+        "operationId": "GetBucketCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bucketId",
+            "in": "path",
+            "description": "The bucket Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns bool indicating if the create was okay",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiBucket"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiBucket"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiBucket"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returns a error message, usually related to wrong bucket id",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The bucket wasn't found.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/bucket/type/{bucketType}": {
+      "get": {
+        "tags": [
+          "Bucket"
+        ],
+        "summary": "Gets bucketId",
+        "operationId": "GetBucketIdCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bucketType",
+            "in": "path",
+            "description": "The bucket type",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/BucketType"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "The user id (if needed)",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns bool indicating if the create was ok",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Return an error message, usually wring user id when the bucket type is User",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/bucket/create": {
+      "post": {
+        "tags": [
+          "Bucket"
+        ],
+        "summary": "Creates new bucket for the tenant",
+        "operationId": "CreateBucketCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The bucket you want added",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/Bucket"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/Bucket"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/Bucket"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/Bucket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns bool indicating if the create was okay",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/bucket/createtenantbuckets": {
+      "post": {
+        "tags": [
+          "Bucket"
+        ],
+        "summary": "Creates all required buckets for a tenant",
+        "operationId": "CreateTenantCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The Tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns bool indicating if the create was okay",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/info": {
+      "get": {
+        "tags": [
+          "Info"
+        ],
+        "summary": "Return an object containing license types, license states, bucket types and bucket states",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/haslicense/{userId}": {
+      "post": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Check if a user has a license",
+        "operationId": "CheckTenantUserLicenseCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The LicenseQuerySpec that specifies the app we are checking the license for",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Return value specifies if user has a license for the given app.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/userlicenses/{userId}": {
+      "post": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Get all licenses a user has",
+        "operationId": "GetTenantUserLicensesCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The LicenseQuerySpec that specifies the app we are getting the licenses for",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns all licenses the user has.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/License"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/License"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/License"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tenant id, user id or the licenseQuerySpec is wrong. Details should be in the response body",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/tenantlicenses": {
+      "get": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Get all licenses a tenant has",
+        "operationId": "GetTenantLicensesCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "Tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all licenses the user has.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiLicense"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiLicense"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiLicense"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tenant id is wrong. Details should be in the response body",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Get all licenses a tenant has filter",
+        "operationId": "GetTenantLicensesWithLicenseQuerySpecCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "Tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Filter the licenses on type or application",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns all licenses the user has.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiLicense"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiLicense"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ApiLicense"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tenant id, user id or the licenseQuerySpec is wrong. Details should be in the response body",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/users": {
+      "get": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Get all users with licenses on a tenant",
+        "operationId": "GetUsersWithLicensesCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "Tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns all user ids",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tenant id is wrong. Details should be in the response body",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Get all users with licenses on a tenant, filtered",
+        "operationId": "GetUsersCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "Tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Filter the licenses on type or application",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns all user id that matches the filter.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tenant id or the licenseQuerySpec is wrong. Details should be in the response body",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/create": {
+      "post": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Create user license",
+        "operationId": "CreateLicenseCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "A License object that should be created",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiLicense"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiLicense"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiLicense"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/ApiLicense"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns bool indicating if the create was OK",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tenant id or something in the license to be created is wrong. Details should be in the response body",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/changelicensetype/{licenseId}/{licensetype}": {
+      "get": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Change license type of license",
+        "operationId": "ChangeLicenseTypeCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The Tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "licenseId",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "licenseType",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/LicenseType"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiLicense"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiLicense"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiLicense"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/changelicensetype/{licensetype}": {
+      "post": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Change license type of licenses according to the License Query Spec.\r\nNote: The licenses must specified by at least LicenseType in the query.",
+        "operationId": "ChangeLicenseTypeWithLicenseQuerySpecCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The Tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "licenseType",
+            "in": "path",
+            "description": "The License Type to change to",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/LicenseType"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "License Query Spec to find target licenses",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiLicense"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiLicense"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiLicense"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/createshadow/{toTenantId}": {
+      "post": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Create shadow licenses for an array of licenses",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant that owns the licenses",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "toTenantId",
+            "in": "path",
+            "description": "The tenant that is going to own the shadow licenses",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "An array of license ids to create shadow licenses for",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns bool indicating if the create was OK",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tenant id or something in the license to be created is wrong. Details should be in the response body",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/convertToNormal/{licenseId}": {
+      "get": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Convert a shadow license into a normal one",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant that owns the licenses",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "licenseId",
+            "in": "path",
+            "description": "The id of the shadow license to convert",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns bool indicating if the create was OK",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/License"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/License"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/License"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Tenant id or something in the license to be created is wrong. Details should be in the response body",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/metric/fortenant/{tenantId}": {
+      "get": {
+        "tags": [
+          "Metric"
+        ],
+        "summary": "Get license counts for tenant",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a dictionary of the license counts",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated or the tenant don't exist.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/metric": {
+      "get": {
+        "tags": [
+          "Metric"
+        ],
+        "summary": "Get the license counts for all tenants",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a dictionary of the license counts",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated or the tenant don't exist.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/metric/filter": {
+      "post": {
+        "tags": [
+          "Metric"
+        ],
+        "summary": "Get the license counts filtered",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The License Query Spec",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a dictionary of the license counts",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usually when there is something in the filter that isn't correct",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated or the tenant don't exist.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/metric/{tenantId}/filter": {
+      "post": {
+        "tags": [
+          "Metric"
+        ],
+        "summary": "Get the license counts for the tenantId and for app specified in the license query spec parameter",
+        "operationId": "GetFilteredLicenseCountCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The Tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The License Query Spec",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns a dictionary of the license counts",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/BucketCount"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Usually when there is something in the filter that isn't correct",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated or the tenant don't exist.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/metric/total": {
+      "get": {
+        "tags": [
+          "Metric"
+        ],
+        "summary": "Get the total license with no regard to the applications and buckets",
+        "parameters": [
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a bucket count without applications and buckets",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BucketCount"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BucketCount"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/BucketCount"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated or the tenant don't exist.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/transaction/movefromnotinuse/{toUserId}": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Move a license from the free bucket to a user bucket",
+        "operationId": "MoveAnyLicenseFromTenantFreeBucketToTenantUserCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "toUserId",
+            "in": "path",
+            "description": "The user which should have the free license",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The License Query Spec",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "License successfully moved from the free bucket to a user bucket.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the license couldn't be moved, it will usually become a bad request",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/transaction/movefromnotinuse/{fromBucketType}/{toUserId}": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Move a license from the free bucket to a user bucket",
+        "operationId": "MoveAnyLicenseFromTenantFreeBucketTypeToTenantUserCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "toUserId",
+            "in": "path",
+            "description": "The user which should have the free license",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "fromBucketType",
+            "in": "path",
+            "description": "Specify which free bucket to move from. This is usually Auto. User, Tenant and Garbage bucket is not allowed.",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/BucketType"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Filter the licenses to be moved",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "License successfully moved from the free bucket to a user bucket.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the license couldn't be moved, it will usually become a bad request",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/transaction/move/{fromBucketType}/to/{toBucketType}": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Move a license from one bucket type to another. Neither of the bucket types can be a user bucket.",
+        "operationId": "MoveAnyLicenseFromFromBucketTypeToBucketTypeCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "fromBucketType",
+            "in": "path",
+            "description": "The bucket type to move the matching license from. Can't be a user bucket",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/BucketType"
+            }
+          },
+          {
+            "name": "toBucketType",
+            "in": "path",
+            "description": "The bucket type to move the matching license to. Can't be a user bucket",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/BucketType"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The License Query Spec",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "License successfully moved from the free bucket to a user bucket.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "If the license couldn't be moved, it will usually become a bad request",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/transaction/{fromUserId}/movetoUser/{toUserId}": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Move a license from a user to another user",
+        "operationId": "MoveAnyLicenseIdFromUserToUserCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "fromUserId",
+            "in": "path",
+            "description": "The user to move the license from",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "toUserId",
+            "in": "path",
+            "description": "The user to move the license to",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The License Query Spec",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bucket transaction history were successfully retrieved.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/transaction/{fromBucketId}/movetoBucket/{toBucketId}": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Move a license from a bucket to another bucket",
+        "operationId": "MoveAnyLicenseIdFromBucketToBucketCommon",
+        "parameters": [
+          {
+            "name": "fromBucketId",
+            "in": "path",
+            "description": "The bucket to move the license from",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "toBucketId",
+            "in": "path",
+            "description": "The bucket to move the license to",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "tenantId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The License Query Spec",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bucket transaction history were successfully retrieved.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/transaction/movetogarbage/{userId}": {
+      "post": {
+        "tags": [
+          "Transaction"
+        ],
+        "summary": "Move a license from a user to garbage bucket",
+        "operationId": "MoveLicenseFromUserToGarbageCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The User Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The License Query Spec",
+          "content": {
+            "application/json-patch+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "text/json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            },
+            "application/*+json; version=1.0": {
+              "schema": {
+                "$ref": "#/components/schemas/LicenseQuerySpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Bucket transaction history were successfully retrieved.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/history/bucket/{bucketId}": {
+      "get": {
+        "tags": [
+          "TransactionHistory"
+        ],
+        "summary": "Get bucket transaction history",
+        "operationId": "GetBucketTransactionHistoryCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "bucketId",
+            "in": "path",
+            "description": "The bucketId you want transaction history for",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bucket transaction history were successfully retrieved.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BucketTransactionHistory"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BucketTransactionHistory"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BucketTransactionHistory"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Tbe bucket is not found",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/history/userbucket/{userId}": {
+      "get": {
+        "tags": [
+          "TransactionHistory"
+        ],
+        "summary": "Get user bucket transaction history",
+        "operationId": "GetUserBucketTransactionHistoryCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The userId you want transaction history for",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bucket transaction history were successfully retrieved.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BucketTransactionHistory"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BucketTransactionHistory"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BucketTransactionHistory"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Tbe user bucket is not found",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/common/license/{tenantId}/history/license/{licenseId}": {
+      "get": {
+        "tags": [
+          "TransactionHistory"
+        ],
+        "summary": "Get license transaction history",
+        "operationId": "GetLicenseTransactionHistoryCommon",
+        "parameters": [
+          {
+            "name": "tenantId",
+            "in": "path",
+            "description": "The tenant Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "licenseId",
+            "in": "path",
+            "description": "The licenseId you want transaction history for",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "api-version",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "License transaction history were successfully retrieved.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LicenseTransactionHistory"
+                  }
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LicenseTransactionHistory"
+                  }
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LicenseTransactionHistory"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User is not authenticated.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User is not allowed to access tenant.",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json; version=1.0": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LicenseType": {
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "BucketType": {
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          99
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "BucketState": {
+        "enum": [
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Bucket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bucketType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketType"
+              }
+            ]
+          },
+          "bucketState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketState"
+              }
+            ]
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedByActorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "licenseCountLimit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "App": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "string",
+            "nullable": true
+          },
+          "wareId": {
+            "type": "string",
+            "nullable": true
+          },
+          "generateEscrowLicense": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "escrowExpiration": {
+            "type": "string",
+            "nullable": true
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LicenseState": {
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ApiLicense": {
+        "type": "object",
+        "properties": {
+          "licenseType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseType"
+              }
+            ],
+            "description": "License Type"
+          },
+          "bucket": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Bucket"
+              }
+            ],
+            "description": "Bucket this license belongs to",
+            "nullable": true
+          },
+          "apps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/App"
+            },
+            "description": "Attached Applications",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "issuer": {
+            "type": "string",
+            "nullable": true
+          },
+          "issued": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "settingJson": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseState"
+              }
+            ]
+          },
+          "stateJson": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "consolidationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "suspensionDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedByActorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "shadow": {
+            "type": "boolean"
+          },
+          "shadowOfId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "API Model for License with attached Applications"
+      },
+      "ApiBucket": {
+        "type": "object",
+        "properties": {
+          "licenses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiLicense"
+            },
+            "description": "Attached licenses",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "bucketType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketType"
+              }
+            ]
+          },
+          "bucketState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketState"
+              }
+            ]
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedByActorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "licenseCountLimit": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "API Model for Bucket. Includes attached licenses"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {
+          "type": "object",
+          "additionalProperties": false
+        }
+      },
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "route": {
+            "type": "string",
+            "nullable": true
+          },
+          "method": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Api": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuthorizationRole": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "ShadowType": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "LicenseQuerySpec": {
+        "type": "object",
+        "properties": {
+          "wareId": {
+            "type": "string",
+            "nullable": true
+          },
+          "appId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "string",
+            "nullable": true
+          },
+          "displayName": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseType"
+              }
+            ],
+            "nullable": true
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuthorizationRole"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "appIdArray": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "shadowType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ShadowType"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "License": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "licenseType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseType"
+              }
+            ]
+          },
+          "issuer": {
+            "type": "string",
+            "nullable": true
+          },
+          "issued": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "settingJson": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenseState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseState"
+              }
+            ]
+          },
+          "stateJson": {
+            "type": "string",
+            "nullable": true
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "consolidationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "suspensionDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModifiedByActorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "validFrom": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "validTo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "shadow": {
+            "type": "boolean"
+          },
+          "shadowOfId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "BucketCount": {
+        "type": "object",
+        "properties": {
+          "inUseUser": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "inUseTenant": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notInUse": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "notInUseAuto": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BucketTransactionHistory": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fromBucketId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fromBucketType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketType"
+              }
+            ]
+          },
+          "fromBucketState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketState"
+              }
+            ]
+          },
+          "fromBucketTenantId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fromBucketUserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "licenseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "apps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/App"
+            },
+            "nullable": true
+          },
+          "licenseType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseType"
+              }
+            ]
+          },
+          "licenseState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseState"
+              }
+            ]
+          },
+          "toBucketId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "toBucketType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketType"
+              }
+            ]
+          },
+          "toBucketState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketState"
+              }
+            ]
+          },
+          "toBucketTenantId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "toBucketUserId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Actor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "client": {
+            "type": "string",
+            "nullable": true
+          },
+          "taskName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sticosUserName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isSticos": {
+            "type": "boolean"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LicenseTransactionHistory": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "actor": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Actor"
+              }
+            ]
+          },
+          "toBucketId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "toBucketType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketType"
+              }
+            ]
+          },
+          "toBucketState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BucketState"
+              }
+            ]
+          },
+          "licenseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "apps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/App"
+            },
+            "nullable": true
+          },
+          "licenseType": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseType"
+              }
+            ]
+          },
+          "licenseState": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LicenseState"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
